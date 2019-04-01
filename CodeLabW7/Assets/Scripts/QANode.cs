@@ -8,7 +8,7 @@ public class QANode
     public string option1Text;
     public string option2Text;
 
-    public QANode() //default constructor is empty
+    public QANode() //default constructor is empty, we can overwrite it 
     {
         pageNumber = 0;
         questionText = "This is default question text. ?";
@@ -20,6 +20,7 @@ public class QANode
     {
         this.pageNumber = pageNumber;
         this.questionText = questionText;
+        //the other two strings will default to the string default values
     }
 
     public QANode(int pageNumber, string questionText,string option1Text, string option2Text)
