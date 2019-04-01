@@ -16,7 +16,7 @@ public class QAManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string fileLocation = Application.dataPath + "/QAData.json";    
+        string fileLocation = Application.dataPath + "/QAPage"+1+".json";    
         //WriteNewJson(fileLocation); //This was to initially build our Json file, use this if it gets deleted
         ReadFromJson(fileLocation);
         UpdateUI(currentNode);   
@@ -42,6 +42,17 @@ public class QAManager : MonoBehaviour
 
     }
 
+    public void ChooseOption(int pageNumber)
+    {
+        string fileLocation= Application.dataPath + "/QAPage" + currentNode.option1Page + ".json";
+        if (pageNumber != 1)
+        {
+            fileLocation= Application.dataPath + "/QAPage" + currentNode.option2Page + ".json";
+        }
+        ReadFromJson(fileLocation);
+        UpdateUI(currentNode);
+    }
+    
     void ReadFromJson(string fileLocation)
     {
         string input = File.ReadAllText(fileLocation);

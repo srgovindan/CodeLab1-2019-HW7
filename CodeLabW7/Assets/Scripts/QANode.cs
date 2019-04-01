@@ -7,6 +7,11 @@ public class QANode
     public string questionText;
     public string option1Text;
     public string option2Text;
+    public int option1Page;
+    public int option2Page;
+
+    public QANode option1;
+    public QANode option2;
 
     public QANode() //default constructor is empty, we can overwrite it 
     {
