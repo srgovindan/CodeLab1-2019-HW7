@@ -16,33 +16,36 @@ public class QAManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-//        currentNode = new QANode(
-//            1,
-//            "You come to a fork in the road.\n Do you go left or right?",
-//            "Left",
-//            "Right");
-        
-//        string jsonStr = JsonUtility.ToJson(currentNode,true);
-//        //pretty printing kills mobile data quotas
-//        print(jsonStr);
-        string fileLocation = Application.dataPath + "/QAData.json";
-//        File.WriteAllText(fileLocation,jsonStr);
+        string fileLocation = Application.dataPath + "/QAData.json";    
+        //WriteNewJson(fileLocation); //This was to initially build our Json file, use this if it gets deleted
+        ReadFromJson(fileLocation);
+        UpdateUI(currentNode);   
+    }
 
-        string input = File.ReadAllText(fileLocation);
-        currentNode = JsonUtility.FromJson<QANode>(input);
+    void WriteNewJson(string fileLocation)
+    {     
+        currentNode = new QANode(
+            1,
+            "You come to a fork in the road.\n Do you go left or right?",
+            "Left",
+            "Right");
+        string jsonStr = JsonUtility.ToJson(currentNode,true);
+        print(jsonStr);
+        File.WriteAllText(fileLocation,jsonStr);
+        
+        //pretty printing kills mobile data quotas
         
 //        currentNode.pageNumber = 1;
 //        currentNode.questionText = "You come to a fork in the road.\n Do you go left or right?";
 //        currentNode.option1Text = "Left";
 //        currentNode.option2Text = "Right";
-        UpdateUI(currentNode);
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void ReadFromJson(string fileLocation)
     {
-        
+        string input = File.ReadAllText(fileLocation);
+        currentNode = JsonUtility.FromJson<QANode>(input);
     }
 
     void UpdateUI(QANode node)
